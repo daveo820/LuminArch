@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useSettingsStore, themes } from '@/stores/useSettingsStore';
+import { useSettingsStore, themes, type ThemeColor } from '@/stores/useSettingsStore';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const themeColor = useSettingsStore((state) => state.themeColor);
+  const { themeColor } = useSettingsStore();
 
   useEffect(() => {
-    const theme = themes[themeColor];
+    const theme = themes[themeColor as ThemeColor];
     const root = document.documentElement;
 
     root.style.setProperty('--accent', `rgb(${theme.accent})`);

@@ -33,7 +33,7 @@ export function KanbanBoard() {
   );
 
   const handleDragStart = (event: DragStartEvent) => {
-    const task = tasks.find((t) => t.id === event.active.id);
+    const task = tasks.find((t: Task) => t.id === event.active.id);
     if (task) {
       setActiveTask(task);
     }
@@ -46,7 +46,7 @@ export function KanbanBoard() {
     const activeId = active.id as string;
     const overId = over.id as string;
 
-    const activeTask = tasks.find((t) => t.id === activeId);
+    const activeTask = tasks.find((t: Task) => t.id === activeId);
     if (!activeTask) return;
 
     // Check if dropping over a column
@@ -54,14 +54,14 @@ export function KanbanBoard() {
     if (isOverColumn) {
       const newColumnId = overId as ColumnId;
       if (activeTask.columnId !== newColumnId) {
-        const columnTasks = tasks.filter((t) => t.columnId === newColumnId);
+        const columnTasks = tasks.filter((t: Task) => t.columnId === newColumnId);
         moveTask(activeId, newColumnId, columnTasks.length);
       }
       return;
     }
 
     // Check if dropping over another task
-    const overTask = tasks.find((t) => t.id === overId);
+    const overTask = tasks.find((t: Task) => t.id === overId);
     if (overTask && activeTask.columnId !== overTask.columnId) {
       moveTask(activeId, overTask.columnId, overTask.order);
     }
@@ -78,8 +78,8 @@ export function KanbanBoard() {
 
     if (activeId === overId) return;
 
-    const activeTask = tasks.find((t) => t.id === activeId);
-    const overTask = tasks.find((t) => t.id === overId);
+    const activeTask = tasks.find((t: Task) => t.id === activeId);
+    const overTask = tasks.find((t: Task) => t.id === overId);
 
     if (activeTask && overTask && activeTask.columnId === overTask.columnId) {
       reorderTasks(activeId, overId, activeTask.columnId);
@@ -87,7 +87,7 @@ export function KanbanBoard() {
   };
 
   const getTasksByColumn = (columnId: ColumnId) =>
-    tasks.filter((task) => task.columnId === columnId);
+    tasks.filter((task: Task) => task.columnId === columnId);
 
   return (
     <DndContext

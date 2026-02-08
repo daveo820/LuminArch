@@ -36,28 +36,28 @@ export function ThisWeekPanel() {
   const [calendarOpen, setCalendarOpen] = useState(false);
 
   // Filter active tasks (not completed)
-  const activeTasks = tasks.filter((t) => t.columnId !== 'complete');
+  const activeTasks = tasks.filter((t: Task) => t.columnId !== 'complete');
 
   // Get tasks due this week
   const now = new Date();
   const weekFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
 
   const upcomingTasks = activeTasks
-    .filter((task) => {
+    .filter((task: Task) => {
       if (!task.dueAt) return false;
       return new Date(task.dueAt) <= weekFromNow;
     })
-    .sort((a, b) => (a.dueAt || 0) - (b.dueAt || 0));
+    .sort((a: Task, b: Task) => (a.dueAt || 0) - (b.dueAt || 0));
 
   // Categorize tasks
-  const overdueTasks = upcomingTasks.filter((t) => getUrgency(t.dueAt) === 'overdue');
-  const todayTasks = upcomingTasks.filter((t) => getUrgency(t.dueAt) === 'today');
-  const tomorrowTasks = upcomingTasks.filter((t) => getUrgency(t.dueAt) === 'tomorrow');
-  const thisWeekTasks = upcomingTasks.filter((t) => getUrgency(t.dueAt) === 'this-week');
+  const overdueTasks = upcomingTasks.filter((t: Task) => getUrgency(t.dueAt) === 'overdue');
+  const todayTasks = upcomingTasks.filter((t: Task) => getUrgency(t.dueAt) === 'today');
+  const tomorrowTasks = upcomingTasks.filter((t: Task) => getUrgency(t.dueAt) === 'tomorrow');
+  const thisWeekTasks = upcomingTasks.filter((t: Task) => getUrgency(t.dueAt) === 'this-week');
 
   // Special groups
   const quickWins = activeTasks.filter(isQuickWin);
-  const highPriority = activeTasks.filter((t) => isHighPriority(t) && !isQuickWin(t));
+  const highPriority = activeTasks.filter((t: Task) => isHighPriority(t) && !isQuickWin(t));
   const deepFocus = activeTasks.filter(isDeepFocus);
 
   // Get the single most important task to work on
@@ -175,19 +175,19 @@ export function ThisWeekPanel() {
         <div className="grid grid-cols-3 gap-2 text-xs">
           <div className="text-center p-2 rounded-lg bg-[rgb(var(--bg-elevated))]">
             <div className="text-base font-semibold text-[rgb(var(--text-primary))]">
-              {tasks.filter((t) => t.columnId === 'todo').length}
+              {tasks.filter((t: Task) => t.columnId === 'todo').length}
             </div>
             <div className="text-[10px] text-[rgb(var(--text-muted))]">To Do</div>
           </div>
           <div className="text-center p-2 rounded-lg bg-[rgb(var(--bg-elevated))]">
             <div className="text-base font-semibold text-[var(--accent)]">
-              {tasks.filter((t) => t.columnId === 'in-progress').length}
+              {tasks.filter((t: Task) => t.columnId === 'in-progress').length}
             </div>
             <div className="text-[10px] text-[rgb(var(--text-muted))]">Active</div>
           </div>
           <div className="text-center p-2 rounded-lg bg-[rgb(var(--bg-elevated))]">
             <div className="text-base font-semibold text-green-400">
-              {tasks.filter((t) => t.columnId === 'complete').length}
+              {tasks.filter((t: Task) => t.columnId === 'complete').length}
             </div>
             <div className="text-[10px] text-[rgb(var(--text-muted))]">Done</div>
           </div>

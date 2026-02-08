@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTodoStore } from '@/stores/useTodoStore';
 import { TodoItem } from './TodoItem';
 import { Input } from '@/components/ui/Input';
+import type { TodoItem as TodoItemType } from '@/types';
 
 export function TodoPanel() {
   const { todos, addTodo } = useTodoStore();
@@ -17,8 +18,8 @@ export function TodoPanel() {
     }
   };
 
-  const incompleteTodos = todos.filter((t) => !t.completed);
-  const completedTodos = todos.filter((t) => t.completed);
+  const incompleteTodos: TodoItemType[] = todos.filter((t: TodoItemType) => !t.completed);
+  const completedTodos: TodoItemType[] = todos.filter((t: TodoItemType) => t.completed);
 
   return (
     <div className="p-4">
@@ -41,7 +42,7 @@ export function TodoPanel() {
       </form>
 
       <div className="space-y-1">
-        {incompleteTodos.map((todo) => (
+        {incompleteTodos.map((todo: TodoItemType) => (
           <TodoItem key={todo.id} todo={todo} />
         ))}
 
@@ -52,7 +53,7 @@ export function TodoPanel() {
                 Completed ({completedTodos.length})
               </span>
             </div>
-            {completedTodos.map((todo) => (
+            {completedTodos.map((todo: TodoItemType) => (
               <TodoItem key={todo.id} todo={todo} />
             ))}
           </>

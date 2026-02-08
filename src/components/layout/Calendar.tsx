@@ -33,7 +33,7 @@ export function Calendar({ isOpen, onClose }: CalendarProps) {
 
   // Get tasks for a specific date
   const getTasksForDate = (date: Date): Task[] => {
-    return tasks.filter((task) => {
+    return tasks.filter((task: Task) => {
       if (!task.dueAt || task.columnId === 'complete') return false;
       const taskDate = new Date(task.dueAt);
       return (

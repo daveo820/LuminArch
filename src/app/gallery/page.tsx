@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     'Browse our portfolio of weddings, celebrations, and corporate events in Cary, NC and the Triangle. See how MK Traditions brings visions to life.',
 };
 
-const galleryImages = [
+const galleryImages: { src: string; alt: string; category: 'weddings' | 'celebrations' | 'corporate' }[] = [
   {
     src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
     alt: 'Elegant wedding reception',

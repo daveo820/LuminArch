@@ -3,20 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 interface ContactFormData {
   name: string;
   email: string;
-  phone?: string;
-  eventType: string;
-  guestCount?: string;
-  preferredDate?: string;
+  subject: string;
   message: string;
 }
 
 // Input length limits to prevent DoS
 const MAX_NAME_LENGTH = 100;
 const MAX_EMAIL_LENGTH = 254;
-const MAX_PHONE_LENGTH = 20;
-const MAX_EVENT_TYPE_LENGTH = 100;
-const MAX_GUEST_COUNT_LENGTH = 20;
-const MAX_DATE_LENGTH = 50;
+const MAX_SUBJECT_LENGTH = 100;
 const MAX_MESSAGE_LENGTH = 5000;
 
 // Sanitize string input
@@ -33,15 +27,12 @@ export async function POST(request: NextRequest) {
     const data: ContactFormData = {
       name: sanitize(rawData.name, MAX_NAME_LENGTH),
       email: sanitize(rawData.email, MAX_EMAIL_LENGTH),
-      phone: sanitize(rawData.phone, MAX_PHONE_LENGTH),
-      eventType: sanitize(rawData.eventType, MAX_EVENT_TYPE_LENGTH),
-      guestCount: sanitize(rawData.guestCount, MAX_GUEST_COUNT_LENGTH),
-      preferredDate: sanitize(rawData.preferredDate, MAX_DATE_LENGTH),
+      subject: sanitize(rawData.subject, MAX_SUBJECT_LENGTH),
       message: sanitize(rawData.message, MAX_MESSAGE_LENGTH),
     };
 
     // Validate required fields
-    if (!data.name || !data.email || !data.eventType || !data.message) {
+    if (!data.name || !data.email || !data.message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -57,26 +48,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate phone format if provided
-    if (data.phone && !/^[\d\s\-+()]*$/.test(data.phone)) {
-      return NextResponse.json(
-        { error: 'Invalid phone format' },
-        { status: 400 }
-      );
-    }
-
     // In production, you would send an email here using a service like:
     // - Resend (https://resend.com)
     // - SendGrid
     // - AWS SES
-    // - EmailJS
     //
     // Example with Resend:
     // const resend = new Resend(process.env.RESEND_API_KEY);
     // await resend.emails.send({
-    //   from: 'MK Traditions <noreply@mktraditions.com>',
-    //   to: 'mktraditions.nc@gmail.com',
-    //   subject: `New Inquiry: ${data.eventType} from ${data.name}`,
+    //   from: 'NOWADAYS. <noreply@nowadayswilmington.com>',
+    //   to: 'hello@nowadayswilmington.com',
+    //   subject: `[${data.subject}] New message from ${data.name}`,
     //   html: `...email template...`,
     // });
 
@@ -84,10 +66,7 @@ export async function POST(request: NextRequest) {
     console.log('Contact form submission:', {
       name: data.name,
       email: data.email,
-      phone: data.phone,
-      eventType: data.eventType,
-      guestCount: data.guestCount,
-      preferredDate: data.preferredDate,
+      subject: data.subject,
       message: data.message,
       timestamp: new Date().toISOString(),
     });

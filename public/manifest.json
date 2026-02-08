@@ -1,11 +1,11 @@
 {
-  "name": "MK Traditions",
-  "short_name": "MK Traditions",
-  "description": "Boutique event planning in Cary, NC serving the Triangle area",
+  "name": "NOWADAYS. | Wilmington",
+  "short_name": "NOWADAYS.",
+  "description": "Learn to love the now. Premium sweat sets and loungewear from Wilmington, NC.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF8F5",
-  "theme_color": "#C9A86C",
+  "background_color": "#FAF9F7",
+  "theme_color": "#1A1A1A",
   "icons": [
     {
       "src": "/icon.svg",

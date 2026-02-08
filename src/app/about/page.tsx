@@ -1,329 +1,294 @@
-import type { Metadata } from 'next';
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { CartDrawer } from '@/components/cart/CartDrawer';
+import { CustomCursor } from '@/components/ui/CustomCursor';
+import { FadeIn, StaggerChildren, staggerItem } from '@/components/ui/ScrollAnimations';
+import { TextScramble, SplitText } from '@/components/ui/TextEffects';
 
-// MK Traditions actual images from their site
-const MK_IMAGES = {
-  hero: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/b7650186-c550-467c-97b3-314aa06cebc8/IMG_2899.JPG',
-  portrait: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/65376edc-692f-4c25-aedb-ae67db7f21a7/M%26K_Portraits-13.jpg',
-  event: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/b02d03bb-5b4e-4e32-8a47-54471a8f90ec/IMG_5104.JPG',
-  // Individual portraits - Megan (tall blonde) and Katherine (short brunette)
-  megan: '/images/megan.png',
-  katherine: '/images/katherine.png',
-};
-
-export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    'Meet Megan Olson and Katherine Ruffolo, the cousins behind MK Traditions. Learn about our family legacy and passion for creating unforgettable celebrations in Cary, NC and the Triangle.',
-};
-
-const approachSteps = [
+const values = [
   {
-    step: '01',
-    title: 'Dream It',
-    description:
-      'Tell us your vision. We start with a conversation to understand what makes your celebration unique — your style, your story, your must-haves.',
+    title: 'QUALITY',
+    description: 'Premium fabrics and meticulous craftsmanship in every piece we create.',
+    icon: '◆',
   },
   {
-    step: '02',
-    title: 'Design It',
-    description:
-      'We handle every detail. From venue selection to vendor coordination, timeline creation to décor design, we craft a comprehensive plan tailored to you.',
+    title: 'COMFORT',
+    description: 'Designed for real life. From morning coffee to evening hangouts.',
+    icon: '○',
   },
   {
-    step: '03',
-    title: 'Live It',
-    description:
-      'Enjoy your event stress-free. On the big day, you\'re a guest at your own celebration while we ensure everything runs seamlessly.',
+    title: 'SIMPLICITY',
+    description: 'Minimal design, maximum versatility. Less is always more.',
+    icon: '□',
   },
+  {
+    title: 'COMMUNITY',
+    description: 'Proudly Wilmington. Supporting local and building connections.',
+    icon: '△',
+  },
+];
+
+const timeline = [
+  { year: '2025', event: 'NOWADAYS. is born in Wilmington, NC' },
+  { year: '2025', event: 'First collection drops: The Essentials' },
+  { year: '2025', event: 'Community pop-up at Wilmington Riverfront' },
+  { year: 'NOW', event: 'Growing with you, one moment at a time' },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={MK_IMAGES.event}
-            alt="MK Traditions celebration"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/65 to-charcoal/80" />
-        </div>
-        <div className="relative z-10 container mx-auto text-center">
-          <p
-            className="uppercase tracking-[0.3em] text-sm mb-6 font-semibold"
-            style={{ color: '#C9A86C', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
-          >
-            Our Story
-          </p>
-          <h1
-            className="text-hero mb-6"
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              color: '#FFFFFF',
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
-            }}
-          >
-            The Heart Behind MK Traditions
-          </h1>
-          <p
-            className="text-lg md:text-xl max-w-2xl mx-auto"
-            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
-          >
-            Two cousins, one shared passion, and a grandmother who taught us that
-            the best moments in life are the ones we celebrate together.
-          </p>
-        </div>
-      </section>
+      <CustomCursor />
+      <CartDrawer />
+      <Navbar />
 
-      {/* Our Story Section */}
-      <section className="section bg-white">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div className="relative">
-              <div className="aspect-portrait relative rounded-lg overflow-hidden shadow-xl">
-                <Image
-                  src={MK_IMAGES.portrait}
-                  alt="Megan and Katherine together"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-blush rounded-lg -z-10" />
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-champagne/20 rounded-lg -z-10" />
-            </div>
-            <div>
-              <p className="text-champagne-dark uppercase tracking-widest text-sm mb-4 font-semibold">
-                How It All Began
+      <main className="min-h-screen bg-cream-light">
+        {/* Hero Section */}
+        <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-black">
+          <motion.div
+            className="absolute inset-0"
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: [0.25, 0.4, 0.25, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=80"
+              alt="Nowadays Wilmington"
+              fill
+              className="object-cover opacity-40"
+              priority
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+
+          <div className="relative z-10 text-center text-white px-4">
+            <FadeIn>
+              <span className="text-[10px] tracking-[0.5em] text-white/50 uppercase mb-6 block">
+                Our Story
+              </span>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <h1 className="font-brand text-7xl md:text-9xl tracking-wider mb-6">
+                <TextScramble>ABOUT US</TextScramble>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-white/60 text-lg max-w-xl mx-auto">
+                Learn to love the now.
               </p>
-              <h2
-                className="text-section mb-6"
-                style={{ fontFamily: 'var(--font-cormorant)' }}
-              >
-                Cousins First, Partners Always
-              </h2>
-              <div className="divider divider-left" />
-              <div className="space-y-5 text-text-secondary leading-relaxed">
-                <p>
-                  We&apos;re Megan Olson and Katherine Ruffolo — cousins who are eight years
-                  apart but have been inseparable since Katherine was born. Growing up in
-                  a large, close-knit family, we spent every holiday, birthday, and
-                  &ldquo;just because&rdquo; gathering together.
-                </p>
-                <p>
-                  From coordinating matching outfits at family reunions to planning
-                  elaborate surprise parties for our parents, we discovered early on that
-                  we share a gift for bringing people together and making moments special.
-                </p>
-                <p>
-                  When we both found ourselves in the Triangle area — Megan after college,
-                  Katherine following her career — starting MK Traditions felt like the
-                  most natural thing in the world. It wasn&apos;t just about starting a
-                  business; it was about honoring the tradition of togetherness that our
-                  family instilled in us.
-                </p>
-              </div>
-            </div>
+            </FadeIn>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Individual Bios */}
-      <section className="section bg-cream">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-champagne-dark uppercase tracking-widest text-sm mb-4 font-semibold">
-              Meet Your Planners
-            </p>
-            <h2
-              className="text-section"
-              style={{ fontFamily: 'var(--font-cormorant)' }}
-            >
-              The Faces Behind Every Event
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            {/* Megan */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="aspect-square relative">
-                <Image
-                  src={MK_IMAGES.megan}
-                  alt="Megan Olson - Tall blonde co-founder"
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: 'center 15%' }}
-                />
-              </div>
-              <div className="p-8">
-                <h3
-                  className="text-2xl mb-2"
-                  style={{ fontFamily: 'var(--font-cormorant)' }}
-                >
-                  Megan Olson
-                </h3>
-                <p className="text-champagne-dark text-sm uppercase tracking-widest mb-4 font-semibold">
-                  Co-Founder &amp; Lead Planner
-                </p>
-                <p className="text-text-secondary leading-relaxed">
-                  The detail-oriented dreamer. Megan has a knack for turning vague ideas
-                  into stunning realities. With a background in project management and an
-                  eye for design, she ensures every event flows seamlessly while looking
-                  absolutely beautiful. When she&apos;s not planning, you&apos;ll find her exploring
-                  local venues, testing new caterers, or perfecting her signature cocktail
-                  recipes.
-                </p>
-              </div>
-            </div>
-
-            {/* Katherine */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="aspect-square relative">
-                <Image
-                  src={MK_IMAGES.katherine}
-                  alt="Katherine Ruffolo - Short brunette co-founder"
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: '10% 10%' }}
-                />
-              </div>
-              <div className="p-8">
-                <h3
-                  className="text-2xl mb-2"
-                  style={{ fontFamily: 'var(--font-cormorant)' }}
-                >
-                  Katherine Ruffolo
-                </h3>
-                <p className="text-champagne-dark text-sm uppercase tracking-widest mb-4 font-semibold">
-                  Co-Founder &amp; Creative Director
-                </p>
-                <p className="text-text-secondary leading-relaxed">
-                  The creative connector. Katherine brings warmth and personality to every
-                  client relationship. Her superpower is making people feel heard and
-                  understood, then translating their vision into unforgettable experiences.
-                  A natural hostess with an infectious laugh, she believes every celebration
-                  should feel as good as it looks.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Grandmother Legacy */}
-      <section className="section bg-blush">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="w-24 h-24 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-lg bg-champagne/20 flex items-center justify-center">
-              <svg className="w-12 h-12 text-champagne" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-            </div>
-            <blockquote
-              className="text-2xl md:text-3xl text-charcoal mb-8 leading-relaxed"
-              style={{ fontFamily: 'var(--font-cormorant)' }}
-            >
-              &ldquo;The table is ready when everyone you love is gathered around it.&rdquo;
-            </blockquote>
-            <p className="text-champagne-dark text-sm uppercase tracking-widest mb-6 font-semibold">
-              — Our Grandmother
-            </p>
-            <p className="text-text-secondary leading-relaxed max-w-2xl mx-auto">
-              Our grandmother didn&apos;t just host gatherings — she created magic. Her home
-              was always open, her table always set for one more. She taught us that
-              celebrations aren&apos;t about perfection; they&apos;re about presence. Every event
-              we plan carries a piece of her spirit: the belief that bringing people
-              together is the most important work we can do.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Approach */}
-      <section className="section bg-white">
-        <div className="container mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-champagne-dark uppercase tracking-widest text-sm mb-4 font-semibold">
-              How We Work
-            </p>
-            <h2
-              className="text-section mb-4"
-              style={{ fontFamily: 'var(--font-cormorant)' }}
-            >
-              Our Approach
-            </h2>
-            <div className="divider" />
-            <p className="text-text-secondary">
-              Planning should be as enjoyable as the celebration itself. Here&apos;s how we
-              make that happen.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {approachSteps.map((step) => (
-              <div key={step.step} className="text-center">
-                <div className="text-6xl text-champagne/20 font-bold mb-4">
-                  {step.step}
+        {/* Story Section */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <FadeIn direction="left">
+                <div className="relative">
+                  <div className="aspect-[4/5] relative overflow-hidden">
+                    <Image
+                      src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80"
+                      alt="Wilmington beach lifestyle"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <motion.div
+                    className="absolute -bottom-8 -right-8 w-48 h-48 bg-black"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <div className="w-full h-full flex items-center justify-center text-white">
+                      <span className="font-brand text-xl tracking-wider">EST. 2025</span>
+                    </div>
+                  </motion.div>
                 </div>
-                <h3
-                  className="text-xl mb-4"
-                  style={{ fontFamily: 'var(--font-cormorant)' }}
-                >
-                  {step.title}
-                </h3>
-                <p className="text-text-secondary leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              </FadeIn>
 
-      {/* CTA Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={MK_IMAGES.hero}
-            alt="MK Traditions event"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-charcoal/85" />
-        </div>
-        <div className="relative z-10 container mx-auto text-center">
-          <h2
-            className="text-section mb-6"
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              color: '#FFFFFF',
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
-            }}
-          >
-            Ready to Start Planning?
-          </h2>
-          <p
-            className="text-lg mb-10 max-w-xl mx-auto"
-            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
-          >
-            We&apos;d love to hear about your vision. Let&apos;s create something
-            unforgettable together.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact" className="btn btn-primary">
-              Book a Consultation
-            </Link>
-            <Link href="/services" className="btn btn-secondary !border-white !text-white hover:!bg-white hover:!text-charcoal">
-              View Our Services
-            </Link>
+              <FadeIn direction="right" delay={0.2}>
+                <div>
+                  <span className="text-[10px] tracking-[0.5em] text-gray uppercase mb-6 block">
+                    The Beginning
+                  </span>
+                  <h2 className="font-brand text-5xl md:text-6xl tracking-wider text-black mb-8">
+                    <SplitText>BORN IN WILMINGTON</SplitText>
+                  </h2>
+                  <div className="space-y-6 text-gray leading-relaxed">
+                    <p>
+                      NOWADAYS. started with a simple idea: create clothes that feel as good as
+                      they look. Clothes you actually want to wear every day. No fuss, no
+                      overthinking — just quality pieces that fit your life.
+                    </p>
+                    <p>
+                      Based in Wilmington, NC, we're inspired by the laid-back coastal energy
+                      that surrounds us. The beach mornings, the downtown walks, the moments
+                      in between. We design for those moments.
+                    </p>
+                    <p>
+                      Every piece is crafted with intention. Premium materials meet minimal
+                      design. Because when you're not worried about what you're wearing,
+                      you can focus on what matters — living in the now.
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Values Section */}
+        <section className="py-24 bg-black text-white">
+          <div className="container mx-auto px-4">
+            <FadeIn className="text-center mb-20">
+              <span className="text-[10px] tracking-[0.5em] text-white/30 uppercase mb-6 block">
+                What We Stand For
+              </span>
+              <h2 className="font-brand text-5xl md:text-7xl tracking-wider">
+                OUR VALUES
+              </h2>
+            </FadeIn>
+
+            <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.1}>
+              {values.map((value) => (
+                <motion.div
+                  key={value.title}
+                  variants={staggerItem}
+                  className="text-center p-8 border border-white/10 hover:border-white/30 transition-colors duration-300"
+                >
+                  <span className="text-4xl mb-6 block opacity-30">{value.icon}</span>
+                  <h3 className="font-brand text-2xl tracking-wider mb-4">{value.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{value.description}</p>
+                </motion.div>
+              ))}
+            </StaggerChildren>
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-4">
+            <FadeIn className="text-center mb-20">
+              <span className="text-[10px] tracking-[0.5em] text-gray uppercase mb-6 block">
+                Our Journey
+              </span>
+              <h2 className="font-brand text-5xl md:text-7xl tracking-wider text-black">
+                THE TIMELINE
+              </h2>
+            </FadeIn>
+
+            <div className="max-w-2xl mx-auto">
+              {timeline.map((item, index) => (
+                <FadeIn key={index} delay={index * 0.1}>
+                  <div className="flex gap-8 mb-12 last:mb-0">
+                    <div className="w-20 flex-shrink-0">
+                      <span className="font-brand text-2xl text-black">{item.year}</span>
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <div className="w-full h-px bg-sand mb-4" />
+                      <p className="text-gray">{item.event}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Location Section */}
+        <section className="py-24 bg-sand">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <FadeIn>
+                <div>
+                  <span className="text-[10px] tracking-[0.5em] text-gray uppercase mb-6 block">
+                    Where We Call Home
+                  </span>
+                  <h2 className="font-brand text-5xl md:text-6xl tracking-wider text-black mb-8">
+                    WILMINGTON, NC
+                  </h2>
+                  <div className="space-y-6 text-gray leading-relaxed">
+                    <p>
+                      There's something special about this place. The way the morning light
+                      hits the river. The sound of the waves at Wrightsville. The energy of
+                      downtown on a Friday night.
+                    </p>
+                    <p>
+                      Wilmington isn't just where we're based — it's who we are. Every
+                      collection is inspired by the coastal lifestyle we live every day.
+                      And every piece is made for the people who call this place home.
+                    </p>
+                  </div>
+                  <motion.div
+                    className="mt-8"
+                    whileHover={{ x: 10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Link
+                      href="/shop"
+                      className="inline-flex items-center gap-4 text-black font-medium tracking-wider text-sm"
+                    >
+                      <span>SHOP THE COLLECTION</span>
+                      <span className="text-xl">→</span>
+                    </Link>
+                  </motion.div>
+                </div>
+              </FadeIn>
+
+              <FadeIn direction="right" delay={0.2}>
+                <div className="relative aspect-square">
+                  <Image
+                    src="https://images.unsplash.com/photo-1499678329028-101435549a4e?w=800&q=80"
+                    alt="Wilmington NC"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 bg-black text-white text-center">
+          <div className="container mx-auto px-4">
+            <FadeIn>
+              <span className="text-[10px] tracking-[0.5em] text-white/30 uppercase mb-6 block">
+                Join the Community
+              </span>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <h2 className="font-brand text-5xl md:text-7xl tracking-wider mb-8">
+                LIVE IN THE NOW
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-white/50 mb-12 max-w-md mx-auto">
+                Follow along for new drops, behind-the-scenes, and all things Nowadays.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <Link
+                href="https://instagram.com/nowadayswilmington"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-4 border border-white text-white text-xs tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-300"
+              >
+                @nowadayswilmington
+              </Link>
+            </FadeIn>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </>
   );
 }

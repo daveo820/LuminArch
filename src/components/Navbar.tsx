@@ -11,13 +11,13 @@ const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/setthestage', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,17 +33,30 @@ export default function Navbar() {
     setIsOpen(false);
   }, []);
 
+  // Trigger logo animation after mount
+  useEffect(() => {
+    const timer = setTimeout(() => setLogoLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-sm shadow-md py-2'
+          ? 'bg-white shadow-lg py-2'
           : 'bg-transparent py-4'
       }`}
     >
       <nav className="container mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="relative h-12 w-32 md:h-14 md:w-36">
+        {/* Logo with entrance animation */}
+        <Link
+          href="/"
+          className={`relative h-14 w-36 md:h-16 md:w-44 transition-all duration-700 ease-out ${
+            logoLoaded
+              ? 'opacity-100 scale-100'
+              : 'opacity-0 scale-95'
+          }`}
+        >
           <Image
             src={MK_LOGO}
             alt="MK Traditions"
@@ -59,9 +72,11 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`hover:text-champagne transition-colors text-sm uppercase tracking-widest font-medium ${
-                isScrolled ? 'text-charcoal' : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]'
-              }`}
+              className="hover:text-champagne transition-colors text-sm uppercase tracking-widest font-semibold"
+              style={{
+                color: isScrolled ? '#2D2D2D' : '#FFFFFF',
+                textShadow: isScrolled ? 'none' : '0 2px 6px rgba(0, 0, 0, 0.8)'
+              }}
             >
               {link.label}
             </Link>
@@ -83,19 +98,16 @@ export default function Navbar() {
         >
           <div className="relative w-6 h-5">
             <span
-              className={`absolute left-0 w-full h-0.5 transition-all duration-300 ${
-                isScrolled ? 'bg-charcoal' : 'bg-white'
-              } ${isOpen ? 'top-2 rotate-45 !bg-charcoal' : 'top-0'}`}
+              className={`absolute left-0 w-full h-0.5 transition-all duration-300 ${isOpen ? 'top-2 rotate-45' : 'top-0'}`}
+              style={{ backgroundColor: isScrolled || isOpen ? '#2D2D2D' : '#FFFFFF' }}
             />
             <span
-              className={`absolute left-0 top-2 w-full h-0.5 transition-all duration-300 ${
-                isScrolled ? 'bg-charcoal' : 'bg-white'
-              } ${isOpen ? 'opacity-0' : 'opacity-100'}`}
+              className={`absolute left-0 top-2 w-full h-0.5 transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
+              style={{ backgroundColor: isScrolled ? '#2D2D2D' : '#FFFFFF' }}
             />
             <span
-              className={`absolute left-0 w-full h-0.5 transition-all duration-300 ${
-                isScrolled ? 'bg-charcoal' : 'bg-white'
-              } ${isOpen ? 'top-2 -rotate-45 !bg-charcoal' : 'top-4'}`}
+              className={`absolute left-0 w-full h-0.5 transition-all duration-300 ${isOpen ? 'top-2 -rotate-45' : 'top-4'}`}
+              style={{ backgroundColor: isScrolled || isOpen ? '#2D2D2D' : '#FFFFFF' }}
             />
           </div>
         </button>

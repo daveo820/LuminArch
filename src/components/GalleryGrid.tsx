@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 interface GalleryImage {
@@ -29,6 +29,24 @@ const categoryLabels: Record<string, string> = {
 export default function GalleryGrid({ images }: GalleryGridProps) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
+
+  // ESC key to close lightbox
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setLightboxImage(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (lightboxImage) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxImage, handleKeyDown]);
 
   const filteredImages =
     activeFilter === 'all'
@@ -100,6 +118,9 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
         <div
           className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
           onClick={() => setLightboxImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
         >
           <button
             className="absolute top-4 right-4 text-white hover:text-champagne transition-colors"

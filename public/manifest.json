@@ -1,0 +1,22 @@
+{
+  "name": "MK Traditions",
+  "short_name": "MK Traditions",
+  "description": "Boutique event planning in Cary, NC serving the Triangle area",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#C9A86C",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}

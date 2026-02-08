@@ -21,19 +21,29 @@ export default function ContactPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/65 to-charcoal/80" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-white text-shadow">
-          <p className="text-champagne uppercase tracking-[0.3em] text-sm mb-6 font-semibold">
+        <div className="relative z-10 container mx-auto text-center">
+          <p
+            className="uppercase tracking-[0.3em] text-sm mb-6 font-semibold"
+            style={{ color: '#C9A86C', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Get In Touch
           </p>
           <h1
-            className="text-hero mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-hero mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Let&apos;s Create Something Beautiful
           </h1>
-          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto">
+          <p
+            className="text-lg md:text-xl max-w-2xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Ready to start planning? We&apos;d love to hear about your vision.
             Reach out for a free consultation.
           </p>
@@ -100,10 +110,29 @@ export default function ContactPage() {
                     <div className="w-12 h-12 rounded-full bg-champagne/20 flex items-center justify-center flex-shrink-0">
                       <svg
                         className="w-6 h-6 text-champagne"
-                        fill="currentColor"
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
-                        <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63z" />
+                        <rect
+                          x="2"
+                          y="2"
+                          width="20"
+                          height="20"
+                          rx="5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                        />
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
                       </svg>
                     </div>
                     <div>

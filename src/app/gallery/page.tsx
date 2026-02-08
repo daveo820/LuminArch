@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import GalleryGrid from '@/components/GalleryGrid';
 
 export const metadata: Metadata = {
@@ -104,19 +105,29 @@ export default function GalleryPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/65 to-charcoal/80" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-white text-shadow">
-          <p className="text-champagne uppercase tracking-[0.3em] text-sm mb-6 font-semibold">
+        <div className="relative z-10 container mx-auto text-center">
+          <p
+            className="uppercase tracking-[0.3em] text-sm mb-6 font-semibold"
+            style={{ color: '#C9A86C', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Our Work
           </p>
           <h1
-            className="text-hero mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-hero mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Event Gallery
           </h1>
-          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto">
+          <p
+            className="text-lg md:text-xl max-w-2xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             A glimpse into the celebrations we&apos;ve had the honor of creating.
             Every event tells a story.
           </p>
@@ -139,21 +150,28 @@ export default function GalleryPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/70" />
+          <div className="absolute inset-0 bg-charcoal/85" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-shadow">
+        <div className="relative z-10 container mx-auto text-center">
           <h2
-            className="text-section text-white mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-section mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Ready to Create Your Own Story?
           </h2>
-          <p className="text-white text-lg mb-10 max-w-xl mx-auto">
+          <p
+            className="text-lg mb-10 max-w-xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Let&apos;s plan an event that you&apos;ll be proud to show off.
           </p>
-          <a href="/contact" className="btn btn-primary">
+          <Link href="/contact" className="btn btn-primary">
             Start Planning
-          </a>
+          </Link>
         </div>
       </section>
     </>

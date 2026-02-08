@@ -14,6 +14,14 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const courseId = searchParams.get('courseId');
 
+  // Validate courseId format (should be numeric)
+  if (courseId && !/^\d+$/.test(courseId)) {
+    return NextResponse.json(
+      { error: 'Invalid courseId format' },
+      { status: 400 }
+    );
+  }
+
   try {
     let url: string;
 

@@ -10,9 +10,35 @@ interface ContactFormData {
   message: string;
 }
 
+// Input length limits to prevent DoS
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_PHONE_LENGTH = 20;
+const MAX_EVENT_TYPE_LENGTH = 100;
+const MAX_GUEST_COUNT_LENGTH = 20;
+const MAX_DATE_LENGTH = 50;
+const MAX_MESSAGE_LENGTH = 5000;
+
+// Sanitize string input
+function sanitize(str: string | undefined, maxLength: number): string {
+  if (!str) return '';
+  return str.slice(0, maxLength).trim();
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const data: ContactFormData = await request.json();
+    const rawData = await request.json();
+
+    // Sanitize all inputs with length limits
+    const data: ContactFormData = {
+      name: sanitize(rawData.name, MAX_NAME_LENGTH),
+      email: sanitize(rawData.email, MAX_EMAIL_LENGTH),
+      phone: sanitize(rawData.phone, MAX_PHONE_LENGTH),
+      eventType: sanitize(rawData.eventType, MAX_EVENT_TYPE_LENGTH),
+      guestCount: sanitize(rawData.guestCount, MAX_GUEST_COUNT_LENGTH),
+      preferredDate: sanitize(rawData.preferredDate, MAX_DATE_LENGTH),
+      message: sanitize(rawData.message, MAX_MESSAGE_LENGTH),
+    };
 
     // Validate required fields
     if (!data.name || !data.email || !data.eventType || !data.message) {
@@ -27,6 +53,14 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(data.email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    // Validate phone format if provided
+    if (data.phone && !/^[\d\s\-+()]*$/.test(data.phone)) {
+      return NextResponse.json(
+        { error: 'Invalid phone format' },
         { status: 400 }
       );
     }

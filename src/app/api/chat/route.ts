@@ -20,6 +20,22 @@ interface Message {
   content: string;
 }
 
+// Input validation limits
+const MAX_MESSAGE_LENGTH = 1000;
+const MAX_CONVERSATION_LENGTH = 20;
+
+function validateAndSanitizeMessages(messages: unknown): Message[] | null {
+  if (!Array.isArray(messages)) return null;
+  if (messages.length > MAX_CONVERSATION_LENGTH) return null;
+
+  return messages.map(msg => ({
+    role: msg.role === 'assistant' ? 'assistant' : 'user',
+    content: typeof msg.content === 'string'
+      ? msg.content.slice(0, MAX_MESSAGE_LENGTH).trim()
+      : '',
+  })).filter(msg => msg.content.length > 0);
+}
+
 // Simple in-memory rate limiting (in production, use Redis or similar)
 const rateLimits = new Map<string, { count: number; resetTime: number }>();
 const SESSION_LIMIT = 20;
@@ -58,7 +74,17 @@ function checkRateLimit(ip: string, sessionId: string): { allowed: boolean; erro
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages, sessionId } = await request.json() as { messages: Message[]; sessionId: string };
+    const body = await request.json();
+    const sessionId = typeof body.sessionId === 'string' ? body.sessionId : '';
+
+    // Validate and sanitize messages
+    const messages = validateAndSanitizeMessages(body.messages);
+    if (!messages || messages.length === 0) {
+      return NextResponse.json(
+        { error: 'Invalid or empty messages' },
+        { status: 400 }
+      );
+    }
 
     // Get client IP for rate limiting
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ||

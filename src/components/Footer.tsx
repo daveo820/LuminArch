@@ -7,7 +7,6 @@ const quickLinks = [
   { href: '/services', label: 'Services' },
   { href: '/about', label: 'About Us' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/setthestage', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -34,7 +33,7 @@ export default function Footer() {
                 className="object-contain brightness-0 invert"
               />
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
               Creating unforgettable moments in Cary, NC and the Triangle. From intimate
               gatherings to grand celebrations, we bring your vision to life.
             </p>
@@ -93,7 +92,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -112,7 +111,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -126,7 +125,7 @@ export default function Footer() {
             <h4 className="text-champagne text-sm uppercase tracking-widest font-bold mb-6">
               Get In Touch
             </h4>
-            <ul className="space-y-4 text-sm text-gray-400">
+            <ul className="space-y-4 text-sm text-gray-300">
               <li className="flex items-start gap-3">
                 <svg
                   className="w-5 h-5 text-champagne flex-shrink-0 mt-0.5"
@@ -150,7 +149,7 @@ export default function Footer() {
                 <span>
                   Cary, NC
                   <br />
-                  <span className="text-gray-500">Serving the Triangle Area</span>
+                  <span className="text-gray-400">Serving the Triangle Area</span>
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -198,7 +197,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="container mx-auto py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+        <div className="container mx-auto py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
           <p>
             &copy; {new Date().getFullYear()} MK Traditions. All rights reserved.
           </p>

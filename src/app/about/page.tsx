@@ -7,6 +7,9 @@ const MK_IMAGES = {
   hero: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/b7650186-c550-467c-97b3-314aa06cebc8/IMG_2899.JPG',
   portrait: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/65376edc-692f-4c25-aedb-ae67db7f21a7/M%26K_Portraits-13.jpg',
   event: 'https://images.squarespace-cdn.com/content/v1/67e6bf8bba8157627d5386e4/b02d03bb-5b4e-4e32-8a47-54471a8f90ec/IMG_5104.JPG',
+  // Individual portraits - Megan (tall blonde) and Katherine (short brunette)
+  megan: '/images/megan.png',
+  katherine: '/images/katherine.png',
 };
 
 export const metadata: Metadata = {
@@ -49,19 +52,29 @@ export default function AboutPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/65 to-charcoal/80" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-white text-shadow">
-          <p className="text-champagne uppercase tracking-[0.3em] text-sm mb-6 font-semibold">
+        <div className="relative z-10 container mx-auto text-center">
+          <p
+            className="uppercase tracking-[0.3em] text-sm mb-6 font-semibold"
+            style={{ color: '#C9A86C', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Our Story
           </p>
           <h1
-            className="text-hero mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-hero mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             The Heart Behind MK Traditions
           </h1>
-          <p className="text-lg md:text-xl text-white max-w-2xl mx-auto">
+          <p
+            className="text-lg md:text-xl max-w-2xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Two cousins, one shared passion, and a grandmother who taught us that
             the best moments in life are the ones we celebrate together.
           </p>
@@ -140,10 +153,11 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <div className="aspect-square relative">
                 <Image
-                  src={MK_IMAGES.portrait}
-                  alt="Megan Olson"
+                  src={MK_IMAGES.megan}
+                  alt="Megan Olson - Tall blonde co-founder"
                   fill
-                  className="object-cover object-top"
+                  className="object-cover"
+                  style={{ objectPosition: 'center 15%' }}
                 />
               </div>
               <div className="p-8">
@@ -171,10 +185,11 @@ export default function AboutPage() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg">
               <div className="aspect-square relative">
                 <Image
-                  src={MK_IMAGES.portrait}
-                  alt="Katherine Ruffolo"
+                  src={MK_IMAGES.katherine}
+                  alt="Katherine Ruffolo - Short brunette co-founder"
                   fill
-                  className="object-cover object-bottom"
+                  className="object-cover"
+                  style={{ objectPosition: '10% 10%' }}
                 />
               </div>
               <div className="p-8">
@@ -279,16 +294,23 @@ export default function AboutPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/70" />
+          <div className="absolute inset-0 bg-charcoal/85" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-shadow">
+        <div className="relative z-10 container mx-auto text-center">
           <h2
-            className="text-section text-white mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-section mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Ready to Start Planning?
           </h2>
-          <p className="text-white text-lg mb-10 max-w-xl mx-auto">
+          <p
+            className="text-lg mb-10 max-w-xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             We&apos;d love to hear about your vision. Let&apos;s create something
             unforgettable together.
           </p>

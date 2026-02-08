@@ -101,21 +101,31 @@ export default function Home() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-charcoal/30 to-charcoal/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/65 to-charcoal/80" />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto text-shadow">
-          <p className="text-champagne uppercase tracking-[0.3em] text-sm mb-6 animate-fade-in font-semibold">
+        <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
+          <p
+            className="uppercase tracking-[0.3em] text-sm mb-6 animate-fade-in font-semibold"
+            style={{ color: '#C9A86C', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Cary, NC &amp; Triangle Event Planning
           </p>
           <h1
-            className="text-hero text-white mb-6 animate-fade-in-up text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-hero mb-6 animate-fade-in-up"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Creating Unforgettable Moments
           </h1>
-          <p className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto animate-fade-in-up stagger-1">
+          <p
+            className="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-fade-in-up stagger-1"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             From intimate gatherings to grand celebrations, we bring your vision to life
             with personal attention and heartfelt dedication.
           </p>
@@ -289,16 +299,23 @@ export default function Home() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-charcoal/70" />
+          <div className="absolute inset-0 bg-charcoal/85" />
         </div>
-        <div className="relative z-10 container mx-auto text-center text-shadow">
+        <div className="relative z-10 container mx-auto text-center">
           <h2
-            className="text-section text-white mb-6 text-shadow-strong"
-            style={{ fontFamily: 'var(--font-cormorant)' }}
+            className="text-section mb-6"
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              color: '#FFFFFF',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.9), 0 4px 16px rgba(0, 0, 0, 0.7)'
+            }}
           >
             Ready to Celebrate?
           </h2>
-          <p className="text-white text-lg mb-10 max-w-xl mx-auto">
+          <p
+            className="text-lg mb-10 max-w-xl mx-auto"
+            style={{ color: '#FFFFFF', textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)' }}
+          >
             Let&apos;s create something unforgettable together. Book a free consultation
             and tell us about your vision.
           </p>

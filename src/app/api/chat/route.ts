@@ -29,7 +29,7 @@ function validateAndSanitizeMessages(messages: unknown): Message[] | null {
   if (messages.length > MAX_CONVERSATION_LENGTH) return null;
 
   return messages.map(msg => ({
-    role: msg.role === 'assistant' ? 'assistant' : 'user',
+    role: (msg.role === 'assistant' ? 'assistant' : 'user') as 'user' | 'assistant',
     content: typeof msg.content === 'string'
       ? msg.content.slice(0, MAX_MESSAGE_LENGTH).trim()
       : '',
